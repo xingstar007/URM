@@ -1,7 +1,9 @@
-			<hr/>
-			<footer>
-				<p>Copyright @ ToryZen</p>
-			</footer>
-		</div><!--/.container-->
-	</body>
+<footer>
+	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+	<script>
+     $(document).ready(function() {
+         $('#dataTables-example').dataTable();
+     });
+    </script>
+</footer>
 </html>

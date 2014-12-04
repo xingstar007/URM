@@ -9,7 +9,7 @@ class Node extends CI_Controller {
 	
 	function __construct(){
 		parent::__construct();
-		$this->load->database();
+		$this->db = $this->load->database('release',true);
 	}
 	/**
 	 * 节点首页

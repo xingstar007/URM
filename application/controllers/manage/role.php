@@ -9,7 +9,7 @@ class Role extends CI_Controller {
 	
 	function __construct(){
 		parent::__construct();
-		$this->load->database();
+		$this->db = $this->load->database('release',true);
 	}
 	/**
 	 * 角色首页
