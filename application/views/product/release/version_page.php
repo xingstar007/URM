@@ -47,8 +47,8 @@ for ($i =0 ; $i < count($version_type);$i++)
 									$v_data[$r][3] = '<input class="publish-flag" name="'.$version_list[$i][$r]['version_type'].'" type="radio" value='.$v_id.'/>';
 								}
 								$v_del = anchor('product/release/version_delete/'.$v_id,DELETE,array('class'=>'btn btn-outline btn-default btn-xs'));
-								$v_edit = anchor('product/release/version_updata/'.$v_id,'编辑',array('class'=>'btn btn-outline btn-default btn-xs'));
-								$v_data[$r][4] = $v_del.$v_edit;
+								//$v_edit = anchor('product/release/version_updata/'.$v_id,'编辑',array('class'=>'btn btn-outline btn-default btn-xs'));
+								$v_data[$r][4] = $v_del;
 							}
 						}
 						echo $this->table->generate($v_data);

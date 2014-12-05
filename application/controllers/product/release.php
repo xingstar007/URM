@@ -37,8 +37,7 @@ class Release extends CI_Controller {
 		$this->load->library('input');
 		$this->load->helper('form');
 		$date['project_id'] = $project_id;
-		$date['edit_type'] = 'add';
-		$this->load->view('product/release/edit_version',$date);		
+		$this->load->view('product/release/add_version',$date);		
 	}
 	
 	function create_version_submit($project_id)
@@ -106,15 +105,5 @@ class Release extends CI_Controller {
  		$this->output->set_header('Content-Type: application/json; charset=utf-8');
 		echo json_encode($result);
 	}
-	
-	public function version_updata($edit_version_id)
-	{
-		$del_result = $this->Release_model->delete_version($edit_version_id);
-		if($del_result == 0){
-			error_redirct("","修改失败");
-		}else {
-			success_redirct("product/release/version/".$project_id,"修改成功！");
-		}
-	}
-	
+
 }
