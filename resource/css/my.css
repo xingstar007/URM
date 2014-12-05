@@ -18,3 +18,16 @@ body {
 	margin:42px 20px 22px 20px;
 	float:right;
 }
+
+.version_dropdown{
+	max-width:280px;
+}
+
+.version_input{
+	max-width:280px;
+}
+
+.version_checkbox{
+	
+}
+}

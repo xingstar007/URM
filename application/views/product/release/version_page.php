@@ -3,74 +3,84 @@
     	<h1 class="page-header"><?php echo $page_title?></h1>
     </div>
 	<div class="col-lg-4">
-		<button class="btn btn-outline btn-default btn-lg btn-right-header create-version">新增版本</button>
+		<?php echo anchor('product/release/add_version/'.$project_id,'新增版本',array('class'=>'btn btn-outline btn-default btn-lg btn-right-header create-version'));?>
 	</div>
-</div>
-<!-- /.row -->
-<div class="row edit-version" >
-	<div class="col-lg-12">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<?php echo validation_errors(); ?>
-				<?php echo form_open_multipart('release/create_version_submit',array('id' => 'version_form')); ?>
-				<div class="row">
-					<div class="col-lg-2">
-						<label>选择版本类型</label>
-						<select name="version_type" class="form-control">
-							<option value ="1">android</option>
-							<option value ="2">IOS</option>
-						</select>
-					</div>
-					<div class="col-lg-3">
-						<label>版本号</label>
-						<input name="version_name" class="form-control">
-					</div>
-					<div class="col-lg-3">
-						<label>版本上传</label>
- 						<input type="file" name="product" >
-					</div>
-					<div class="col-lg-2">						
- 						<input name="publish-flag" type="checkbox" value="1"  checked/>
- 						<label>是否发布</label>
-					</div>
-					<div class="col-lg-2">
-						<button id= "myForm2" type="submit" name="project_id" value="<?php  echo $project_id; ?>" class="btn btn-outline btn-default ">提交</button>
-					</div>
-				</div>
-				</form>
-			</div>
-		</div>
-		<!-- /.panel -->
-	</div>
-</div>
-<!-- /.row -->                    
+</div><!-- /.row -->                   
 <div id="version_table">
-	<?php echo $version_table;?>
+<?php
+$this->load->library('table');
+for ($i =0 ; $i < count($version_type);$i++)
+{
+?>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+  				<div class="panel-heading">
+   					<?php 
+   					if($version_type[$i] == 1)
+   					{
+   						echo VERSION_ANDROIDTITLE;
+   					}else if($version_type[$i] == 2)
+   					{
+   						echo VERSION_IOSTITLE;
+   					}
+   					?>
+				</div><!-- /.panel-heading -->
+ 				<div class="panel-body">
+					<div class="table-responsive">
+						<?php
+						$this->table->set_template(default_table_style());
+						$this->table->set_heading(version_table_heading());
+					
+						$v_data = array();
+						if(0<count($version_list[$i])){
+							for($r = 0; $r < count($version_list[$i]); $r++)
+							{
+								$v_id = $version_list[$i][$r]['version_id'];
+								$v_data[$r][0] = $version_list[$i][$r]['version_name'];
+								$v_data[$r][1] = $version_list[$i][$r]['version_date'];
+								$v_data[$r][2] = $version_list[$i][$r]['file_url'];
+								if($version_list[$i][$r]['is_publish'])
+								{
+									$v_data[$r][3] = '<input class="publish-flag" name="'.$version_list[$i][$r]['version_type'].'" type="radio" value='.$v_id.' checked/>';
+								}else {
+									$v_data[$r][3] = '<input class="publish-flag" name="'.$version_list[$i][$r]['version_type'].'" type="radio" value='.$v_id.'/>';
+								}
+								$v_del = anchor('product/release/version_delete/'.$v_id,DELETE,array('class'=>'btn btn-outline btn-default btn-xs'));
+								$v_edit = anchor('product/release/version_updata/'.$v_id,'编辑',array('class'=>'btn btn-outline btn-default btn-xs'));
+								$v_data[$r][4] = $v_del.$v_edit;
+							}
+						}
+						echo $this->table->generate($v_data);
+						?>
+					</div><!-- /.table-responsive -->
+				</div><!-- /.panel-body -->
+			</div><!-- /.panel -->
+		</div>
+	</div><!-- /.row -->
+<?php }?>
 </div>
-<script type="text/javascript">
-	$(document).ready(function() { 
-    	var options = 
-        	{ 
-				target:			'#version_table',
-				beforeSubmit:	showRequest,
-				success:		showResponse,
-				clearForm:		true
-			}; 
-		$("#version_form").ajaxForm(options);
-		$("button.create-version").click(function() {
-			$("div.edit-version").toggle(400);
-		});
+<<script type="text/javascript">
+						
+$(".publish-flag").change(function() {
+	var $this = $(this)		
+	$.ajax({
+			type:"POST",
+			url: "http://127.0.0.1/URM/index.php/product/release/version_publish/",
+			dataType:"json",
+			data:{"version_id":$(this).val()},
+			success:function(data){
+				if(data>0){
+					alert('success');
+				}
+				return false;
+			},
+			error:function(XMLHttpRequest){
+				alert('error');
+				alert(XMLHttpRequest.readyState);
+				alert(XMLHttpRequest.status);
+				return false;
+			}
 	});
-
-	function showRequest(formData, jqForm, options) {
-		var queryString = $.param(formData); 
-		alert('About to submit: \n\n' + queryString); 
-		return true; 
-	} 
- 
-	function showResponse(responseText, statusText)  {
-    	$("#version_table").html(responseText);
-    	$("div.edit-version").hide(400);
-	}
+});	
 </script>
- 

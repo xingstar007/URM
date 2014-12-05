@@ -56,5 +56,5 @@ foreach($menu as $mn){
 	echo '</table>';
 }
 ?>
-<hr/>
+
 <?php echo '<a class="btn btn-success  pull-right" href="'.site_url("manage/menu/add/".$mn["self"]->id."/1/NULL").'">新增一级菜单</a>'; ?>
