@@ -6,7 +6,7 @@ foreach($menu as $mn)
 		echo '<li>';
 		if($mn["self"]["uri"]=="/")
 		{
-			$flist = "<a><i class='fa fa-dashboard fa-fw'></i>".$mn["self"]["title"]."</a>";
+			$flist = "<a href='#'><i class='fa fa-dashboard fa-fw'></i>".$mn["self"]["title"]."</a>";
 		}else{
 			$flist_content = "<i class='fa fa-dashboard fa-fw'></i>".$mn["self"]["title"];
 			$flist = anchor($mn["self"]["uri"],$flist_content);
@@ -19,10 +19,10 @@ foreach($menu as $mn)
 			{				
 				if(@$cmn["shown"])
 				{
-					echo '<li>';
+					echo '<li >';
 					if($cmn["self"]["uri"]=="/")
 					{
-						$slist =  "<a>".$cmn["self"]["title"]."</a>";
+						$slist =  "<a href='#'>".$cmn["self"]["title"]."</a>";
 					}else{
 						$slist = anchor($cmn["self"]["uri"],$cmn["self"]["title"]);
 					}
