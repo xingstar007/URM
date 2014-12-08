@@ -18,15 +18,14 @@ class Shorturl extends CI_Controller {
 	{
 		$this->load->helper('form');
 		$long_url = $this->input->post('long_url');
-		$this->load->helper('shorturl');
-		$url_flag = filterUrl($long_url);
-		//print_r($url_flag);
+		$this->load->library('mshorturl');
+		$url_flag = $this->mshorturl->filterUrl($long_url);
 		if($url_flag){
-			$date['short_url'] = sinaShortenUrl($url_flag);
-			$this->load->view("product/shorturl",$date);
+			$date['short_url'] = $this->mshorturl->sinaShortenUrl($url_flag);
 		}else {
-			$this->load->view("product/shorturl");
-		}		
+
+		}
+		$this->load->view("product/shorturl",$date);
 	}
 	
 	
