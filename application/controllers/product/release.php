@@ -22,13 +22,14 @@ class Release extends CI_Controller {
 		$version_page_data['project_id'] = $project_id;
 		
 		$version_type = $this->Release_model->get_version_count($project_id);
-		for ($i =0 ; $i < count($version_type);$i++)
-		{
-			$versionlist[$i] = $this->Release_model->get_project_version($project_id,$version_type[$i]);		
+		if(count($version_type)>0){
+			for ($i =0 ; $i < count($version_type);$i++)
+			{
+				$versionlist[$i] = $this->Release_model->get_project_version($project_id,$version_type[$i]);		
+			}
+			$version_page_data['version_type'] = $version_type;
+			$version_page_data['version_list'] = $versionlist;
 		}
-		$version_page_data['version_type'] = $version_type;
-		$version_page_data['version_list'] = $versionlist;
-
 		$this->load->view('product/release/version_page',$version_page_data);	
 	}
 
@@ -62,13 +63,15 @@ class Release extends CI_Controller {
 		else
 		{
 			$config['upload_path'] = './uploads/';
-			$config['allowed_types'] = 'gif|jpg|png';
-			$config['max_size'] = '10000';
+			$config['allowed_types'] = 'apk';
+			$config['max_size'] = '64000000';
 			$config['encrypt_name'] = 'TRUE';
 			$this->load->library('upload', $config);
 			
 			if ( ! $this->upload->do_upload('product')) 
 			{
+				print_r ( array('error' => $this->upload->display_errors()));
+
 				error_redirct("","上传失败");
 			}else {
 				$product = $this->upload->data();

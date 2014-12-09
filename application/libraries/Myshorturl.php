@@ -2,7 +2,7 @@
 
 define('SINA_APPKEY', '31641035');
 
-class Mshorturl {
+class Myshorturl {
 
     function __construct()
     {

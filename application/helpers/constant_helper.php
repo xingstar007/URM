@@ -55,3 +55,6 @@ define("UPDATE_PROJECT","上传文件");
 define("IS_PUBLISH","是否发布");
 define("ADD_VERSION","新增版本");
 define("UPDATE_VERSION","修改版本信息");
+define("SHORTURL_PAGETITLE","短链接管理");
+define("PRODUCE_SHORTURL_SINA","生成新浪短链接");
+define("CREATE","生成");

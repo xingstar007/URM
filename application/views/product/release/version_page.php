@@ -9,6 +9,7 @@
 <div id="version_table">
 <?php
 $this->load->library('table');
+if(isset($version_type)){
 for ($i =0 ; $i < count($version_type);$i++)
 {
 ?>
@@ -58,9 +59,9 @@ for ($i =0 ; $i < count($version_type);$i++)
 			</div><!-- /.panel -->
 		</div>
 	</div><!-- /.row -->
-<?php }?>
+<?php }} ?>
 </div>
-<<script type="text/javascript">
+<script type="text/javascript">
 						
 $(".publish-flag").change(function() {
 	var $this = $(this)		
