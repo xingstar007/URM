@@ -12,7 +12,6 @@ class Menu extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('rbac/menu_model');
-		$this->db = $this->load->database('release',true);
 	}
 
 	/**

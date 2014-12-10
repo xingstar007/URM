@@ -16,7 +16,7 @@ class Release_model extends CI_Model {
 				ORDER BY P.project_id';
 		$query = $this->db->query($sql);
 		return $query->result_array();	
-	}	
+	}
 
 	function get_project_name($id)
 	{

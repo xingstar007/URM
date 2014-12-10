@@ -1,7 +1,7 @@
 <?php $this->load->view("head");?>
 
 		<div class="navbar-default sidebar" role="navigation">
-			<div class="sidebar-nav navbar-collapse">
+			<div class="sidebar-nav navbar-collapse" aria-expanded="false" style="height: 1px;">
 				<ul class="nav" id="side-menu">
 					<?php $this->load->view("menu",array("menu"=>$this->get_menu));?>
 				</ul>

@@ -47,9 +47,15 @@
  		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
 			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 				<a class="navbar-brand" href="#"><?php echo isset($header_title)?$header_title:isset($this->get_menu['list'][$this->uuri])?$this->get_menu['list'][$this->uuri]:""; ?></a>
         	</div>
-        	<ul class="nav navbar-nav navbar-right">
+        	<ul class="nav navbar-top-links navbar-right">
 				<li id="fat-menu" class="dropdown">
 					<a href="#" id="user_action" role="button" class="dropdown-toggle" data-toggle="dropdown">欢迎您:<?php echo rbac_conf(array('INFO','nickname'));?><b class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="user_action">

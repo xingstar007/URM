@@ -15,7 +15,7 @@
   <div class="form-group">
     <label>角色</label>
     <select name="role"  class="form-control" >
-    	<option value=''>暂无角色</option>
+    	<option value='0'>暂无角色</option>
     	<?php 
     		foreach($role_data as $vo){
     			echo "<option value='{$vo->id}'>{$vo->rolename}</option>";
