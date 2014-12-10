@@ -2,13 +2,16 @@
 .table td:first-child{width:30%}
 .table td:nth-child(2){width:40%}
 </style>
-<?php 
-foreach($menu as $mn){
-	$nochild = "<span class='glyphicon glyphicon-align-left'></span> " ;
-	$havechild = "<span class='glyphicon glyphicon-link'></span> " ;
-	echo '<table class="table well">';
-	echo '<tr>
-		  	<td><b>'.($mn["self"]->node_id?$havechild:$nochild).$mn["self"]->title.'</b></td>
+<div class="row">
+	<div class="col-lg-12 top-margin-20">
+		<?php 
+			foreach($menu as $mn)
+			{
+				$nochild = "<span class='glyphicon glyphicon-align-left'></span> " ;
+				$havechild = "<span class='glyphicon glyphicon-link'></span> " ;
+				echo '<table class="table well">';
+				echo '<tr>
+				<td><b>'.($mn["self"]->node_id?$havechild:$nochild).$mn["self"]->title.'</b></td>
 		  	<td>'.($mn["self"]->memo?$mn["self"]->memo.$mn["self"]->dcf:"未挂接").'</td>
 		  	<td>'.$mn["self"]->sort.'</td>
 		  	<td>'.($mn["self"]->status==1?"显示":"隐藏").'</td>
@@ -58,3 +61,5 @@ foreach($menu as $mn){
 ?>
 
 <?php echo '<a class="btn btn-success  pull-right" href="'.site_url("manage/menu/add/".$mn["self"]->id."/1/NULL").'">新增一级菜单</a>'; ?>
+	</div>
+</div>

@@ -43,9 +43,9 @@ for ($i =0 ; $i < count($version_type);$i++)
 								$v_data[$r][2] = $version_list[$i][$r]['file_url'];
 								if($version_list[$i][$r]['is_publish'])
 								{
-									$v_data[$r][3] = '<input class="publish-flag" name="'.$version_list[$i][$r]['version_type'].'" type="radio" value='.$v_id.' checked/>';
+									$v_data[$r][3] = '<input class="publish-flag" name="'.$version_type[$i].'" type="radio" value='.$v_id.' checked/>';
 								}else {
-									$v_data[$r][3] = '<input class="publish-flag" name="'.$version_list[$i][$r]['version_type'].'" type="radio" value='.$v_id.'/>';
+									$v_data[$r][3] = '<input class="publish-flag" name="'.$version_type[$i].'" type="radio" value='.$v_id.'/>';
 								}
 								$v_del = anchor('product/release/version_delete/'.$v_id,DELETE,array('class'=>'btn btn-outline btn-default btn-xs'));
 								//$v_edit = anchor('product/release/version_updata/'.$v_id,'编辑',array('class'=>'btn btn-outline btn-default btn-xs'));

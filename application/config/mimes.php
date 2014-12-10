@@ -99,7 +99,7 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'xl'	=>	'application/excel',
 				'eml'	=>	'message/rfc822',
 				'json' => array('application/json', 'text/json'),
-				'apk'	=>	array('application/vnd.android', 'application/vnd.android.package-archive'),
+				'apk' => array('application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/vnd.android.package-archive', 'application/octet-stream'),
 			);
 
 

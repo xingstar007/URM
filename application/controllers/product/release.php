@@ -25,7 +25,7 @@ class Release extends CI_Controller {
 		if(count($version_type)>0){
 			for ($i =0 ; $i < count($version_type);$i++)
 			{
-				$versionlist[$i] = $this->Release_model->get_project_version($project_id,$version_type[$i]);		
+				$versionlist[$i] = $this->Release_model->get_project_version($project_id,$version_type[$i]);
 			}
 			$version_page_data['version_type'] = $version_type;
 			$version_page_data['version_list'] = $versionlist;
@@ -63,13 +63,14 @@ class Release extends CI_Controller {
 		else
 		{
 			$config['upload_path'] = './uploads/';
-			$config['allowed_types'] = 'apk';
-			$config['max_size'] = '64000000';
+			$config['allowed_types'] = '*';
+			$config['max_size'] = '6400000';
 			$config['encrypt_name'] = 'TRUE';
 			$this->load->library('upload', $config);
 			
 			if ( ! $this->upload->do_upload('product')) 
 			{
+				print_r ($_FILES['product']['type']);
 				print_r ( array('error' => $this->upload->display_errors()));
 
 				error_redirct("","上传失败");
@@ -77,11 +78,10 @@ class Release extends CI_Controller {
 				$product = $this->upload->data();
 				$file_name = $product['full_path'];
 				$file_url = base_url().'uploads/'.$product['file_name'];
-					
-				$this->load->helper('date');
-				$version_date =  mdate("%Y-%m-%d", time());
-					
-				$this->Release_model->insert_version($version_name,$version_date,$project_id,$file_name,$file_url,$version_type,$is_publish);
+
+// 				$this->load->helper('date');
+// 				$version_date = mdate("%Y-%m-%d %h:%i:%a", now());	
+				$this->Release_model->insert_version($version_name,$project_id,$file_name,$file_url,$version_type,$is_publish);
 				
 				success_redirct("product/release/version/".$project_id,"新增成功！");
 			}

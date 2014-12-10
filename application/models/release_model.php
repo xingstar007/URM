@@ -12,7 +12,8 @@ class Release_model extends CI_Model {
 		$sql = 'SELECT P.project_id,P.project_name,P.page_url,Va.version_name AS android_version,Vb.version_name AS ios_version 
 				FROM rel_project AS P 
 				LEFT JOIN rel_version AS Va ON (Va.project_id = P.project_id AND Va.is_publish = 1 AND Va.version_type = 1)
-				LEFT JOIN rel_version AS Vb ON (Vb.project_id = P.project_id AND Vb.is_publish = 1 AND Vb.version_type = 2)';
+				LEFT JOIN rel_version AS Vb ON (Vb.project_id = P.project_id AND Vb.is_publish = 1 AND Vb.version_type = 2)
+				ORDER BY P.project_id';
 		$query = $this->db->query($sql);
 		return $query->result_array();	
 	}	
@@ -38,7 +39,8 @@ class Release_model extends CI_Model {
 	
 	function get_project_version($id,$type)
 	{
-		$sql = 'SELECT * FROM rel_version WHERE project_id = ? AND version_type = ?';
+		$sql = 'SELECT V.version_id,V.version_name,DATE_FORMAT(V.version_date,"%Y-%m-%d") AS version_date,V.file_url,V.is_publish 
+				FROM (SELECT * FROM rel_version WHERE project_id = ? AND version_type = ? ORDER BY version_date DESC) V';
 		$data = array($id,$type);
 		$query = $this->db->query($sql,$data);
 		return $query->result_array();
@@ -51,14 +53,14 @@ class Release_model extends CI_Model {
 		return $this->db->affected_rows();
 	}
 
-	function insert_version($version_name,$version_date,$project_id,$file_name,$file_url,$version_type,$is_publish)
+	function insert_version($version_name,$project_id,$file_name,$file_url,$version_type,$is_publish)
 	{
 		if($is_publish == 1){
 			$sql = 'UPDATE rel_version SET is_publish = 0 WHERE is_publish = 1 AND project_id = ? AND version_type = ?';
 			$this->db->query($sql,array($project_id,$version_type));
 		}
-		$sql = 'INSERT INTO rel_version VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)';
-		$data = array(null,$version_name,$version_date,$project_id,$file_name,$file_url,null,$version_type,$is_publish);
+		$sql = 'INSERT INTO rel_version VALUES (?, ?,now(), ?, ?, ?, ?, ?,?)';
+		$data = array(null,$version_name,$project_id,$file_name,$file_url,null,$version_type,$is_publish);
 		$this->db->query($sql,$data);
 		return $this->db->affected_rows();
 	}
