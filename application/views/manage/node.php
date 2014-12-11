@@ -2,6 +2,8 @@
 .table td:first-child{width:30%}
 .table td:nth-child(2){width:40%}
 </style>
+<div class="row">
+	<div class="col-lg-12 top-margin-20">
 <?php 
 //print_r($node);
 foreach($node as $key=>$mn){
@@ -45,3 +47,5 @@ foreach($node as $key=>$mn){
 ?>
 <hr/>
 <?php echo '<a class="btn btn-success pull-right" href="'.site_url("manage/node/add").'">新增目录</a>'; ?>
+	</div>
+</div>

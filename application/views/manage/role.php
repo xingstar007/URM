@@ -2,6 +2,8 @@
 .table td:first-child{width:10%}
 .table td:nth-child(2){width:20%}
 </style>
+<div class="row">
+	<div class="col-lg-12 top-margin-20">
 <table class="table table-bordered well">
 	<thead>
           <tr>
@@ -34,3 +36,5 @@
 
 <?php echo '<a class="btn btn-success pull-right" href="'.site_url("manage/role/add").'">新增角色</a>'; ?>
 <?php echo $this->pagination->create_links(); ?>
+</div>
+</div>

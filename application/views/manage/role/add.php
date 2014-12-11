@@ -1,4 +1,8 @@
-<h1>新增角色</h1>
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">新增角色</h1>
+	</div>
+	<div class="col-lg-12">
 <form role="form" action="" method="post">
   <div class="form-group">
     <label>角色名</label>
@@ -12,3 +16,5 @@
   <button type="submit" class="btn btn-success">确认新增</button>
   <a class="btn btn-danger" href="<?php echo site_url('manage/role/index'); ?>">取消修改</a>
 </form>
+</div>
+</div>

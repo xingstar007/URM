@@ -28,7 +28,7 @@ class Index extends CI_Controller {
 	 */
 	public function login(){
 		
-		$this->load->model("rbac_model");
+		$this->load->model("rbac/rbac_model");
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 		if($username&&$password){

@@ -2,6 +2,8 @@
 	.table td:first-child{width:30%}
 	.table td:nth-child(2){width:40%}
 </style>
+<div class="row">
+	<div class="col-lg-12 top-margin-20">
 <?php 
 foreach($node as $key=>$mn){
 	echo '<table class="table well">';
@@ -30,3 +32,5 @@ foreach($node as $key=>$mn){
 	echo '</table>';
 }
 ?>
+ </div>
+</div>

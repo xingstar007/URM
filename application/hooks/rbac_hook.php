@@ -40,7 +40,7 @@ class Rbac {
 						die();
 					}
 					if($this->ci_obj->config->item('rbac_auth_type')==2){//若为实时认证
-						$this->ci_obj->load->model("rbac_model");
+						$this->ci_obj->load->model("rbac/rbac_model");
 						//检测用户状态
 						$STATUS = $this->ci_obj->rbac_model->check_user_by_id(rbac_conf(array('INFO','id')));
 						if($STATUS==FALSE){
